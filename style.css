@@ -1,0 +1,55 @@
+.buttons {
+    margin: 5px;
+    padding: 5px;
+    background: #006466;
+    color: white;
+    font-weight: bold;
+}
+
+.jumbotron-color {
+    background: #006466;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.newBtn {
+    margin: 5px;
+    padding: 5px;
+    background: #006466; 
+    color: white;
+    font-weight: bold; 
+}
+
+.btnContain {
+    margin: 5px 100px 5px 100px;
+    text-align: center;
+}
+
+#btnContainer {
+    text-align: left;
+}
+
+.main {
+    margin: 0 100px 0 100px;
+}
+
+form {
+    float: right;
+    font-weight: bold;
+    color: #006466;
+}
+
+h1 {
+    padding-left: 20px;
+}
+
+#charDiv {
+    text-align: center;
+    float: left;
+    margin: 10px 20px 10px 0;
+}
+
+img {
+    border: 1px solid black;
+}
