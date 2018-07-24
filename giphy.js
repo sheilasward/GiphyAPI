@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Red Riding Hood", "Snow White", "Sleeping Beauty", "Daisy Duck", "Popeye", "Olive Oyl", "Daffy Duck", "Winnie-the-Pooh", "Betty Boop", "Sylvester", "Yogi Bear", "Superman", "Elmer Fudd", "Tasmanian Devil", "Pink Panther"];
-    var state = [];
 
     renderButtons();
 
@@ -32,7 +31,8 @@ $(document).ready(function() {
     // function run when one of the Cartoon Character Buttons are clicked
     $(document).on("click", ".buttons", function() {
         var CChar = $(this).attr("data-name");
-        console.log(CChar);
+        console.log();
+        console.log("You clicked on button: " + CChar);
         var APIKey = "r66mGJmgqWh5HquqoxbKJADBc0efxdKk"; 
         var queryURL = "https://api.giphy.com/v1/gifs/search" +
                      "?q=" + CChar + 
@@ -45,62 +45,54 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            $("#leftCol").text("");
+            $("#leftCol").empty();
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
+                // console.log("Loop #1");
                 var charDiv = $("<div id=charDiv>");  // you can use "$animalDiv" or "animalDiv" either one.
                 var p = $("<p>");
                 p.text(results[i].rating);
                 var imgID = "charImage" + i;
-                // state[i] = "still";
                 var charImage = $("<img>"); 
                 charImage.attr("src", results[i].images.fixed_height_still.url);
                 charImage.attr("id", imgID);
                 charImage.attr("class", "gif");
-                
+                charImage.attr("data-state", "still");
                 charImage.attr("data-still", results[i].images.fixed_height_still.url);
                 charImage.attr("data-animate", results[i].images.fixed_height.url);
                 charDiv.append(p);
                 charDiv.append(charImage);
                 $("#leftCol").append(charDiv);
-                console.log("imgID = " + imgID);
-                // console.log("state = " + state);
-            }
-            for (var i = 0; i < results.length; i++) {
-                state[i] = "still";
+                // console.log("imgID = " + imgID);
             }
         });
+    });
 
-        // function run when one of the cartoon character gifs are clicked
-        $(document).on("click", ".gif", function() {
-            var id = $(this).attr("id");
-            var index = id.substring(9);
-            var still = $(this).attr("data-still");
-            var animate = $(this).attr("data-animate");
-            var source = $(this).attr("src");
-            console.log();
-            console.log("You clicked on id = " + id);
-            console.log("index = " + index);
-            console.log("Still img = " + still);
-            console.log("Animated img = " + animate);
-            console.log("Before Source is " + source);
-            console.log("Before State is " + state[index]);
-            if (state[index] === "still") {
-                console.log("#1");
-                $(this).attr("src", $(this).attr("data-animate"));
-                $(this).attr("data-state", "animate");
-                state[index] = "animate";
+    // function run when one of the cartoon character gifs are clicked
+    $(document).on("click", ".gif", function() {
+        var state = $(this).attr("data-state");
+        var id = $(this).attr("id");
+        var index = id.substring(9);
+        console.log("You clicked on id = " + id);
+        console.log("index = " + index);
+
+
+        console.log("Before state is " + state);
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+            console.log("Change to animate");
             } else {
-                console.log("#2");
-                $(this).attr("src", $(this).attr("data-still"));
-                $(this).attr("data-state", "still");
-                state[index] = "still";
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+            console.log("Change to still");
             }
-            source = $(this).attr("src");
-            // state = $(this).attr("data-state");
-            console.log("Changed Values:");
-            console.log("  Current Source is " + source);
-            console.log("  Current State is " + state[index]);
-        });
+
+
+        source = $(this).attr("src");
+        state = $(this).attr("data-state");
+
+        console.log("Source is " + source);
+        console.log("After state is " + state);
     });
 });
