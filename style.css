@@ -4,8 +4,29 @@
     background: #006466;
     color: white;
     font-weight: bold;
+    position: relative;
+    z-index: 1;
+    width: 150px;
+    height: 100px;
 }
 
+.deleteButton {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    display: block;
+    color: white;
+    background-color: rgba(0,0,0,0);
+}
+/*
+.deleteButton:hover {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    display: block;
+    color: white;
+}
+*/
 .jumbotron-color {
     background: #006466;
     text-align: center;
@@ -22,7 +43,7 @@
 }
 
 .btnContain {
-    margin: 5px 100px 5px 100px;
+    margin: 5px 100px;
     text-align: center;
 }
 
@@ -30,12 +51,17 @@
     text-align: left;
 }
 
+#gifContainer {
+    margin: 5px 100px;
+    text-align: left;
+}
+
 .main {
-    margin: 0 100px 0 100px;
+    margin: 20px auto;
 }
 
 form {
-    float: right;
+    text-align: center;
     font-weight: bold;
     color: #006466;
 }
@@ -59,3 +85,21 @@ h1 {
 img {
     border: 1px solid black;
 }
+
+.content {
+    position: relative;
+    float:left;
+}
+.content .top_right_corner {
+    position: absolute;
+    top:3px;
+    right:3px;
+}
+.top_right_corner{
+  border:solid 1px blue;
+  cursor:pointer;
+}
+.content:hover .top_right_corner{
+  border:solid 1px red;
+}
+

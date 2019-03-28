@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Red Riding Hood", "Snow White", "Sleeping Beauty", "Daisy Duck", "Popeye", "Olive Oyl", "Daffy Duck", "Winnie-the-Pooh", "Betty Boop", "Sylvester", "Yogi Bear", "Superman", "Elmer Fudd", "Tasmanian Devil", "Pink Panther"];
+    var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Red Riding Hood", "Snow White", "Sleeping Beauty", "Daisy Duck", "Popeye", "Olive Oyl", "Daffy Duck", "Winnie-the-Pooh", "Betty Boop", "Sylvester", "Yogi Bear", "Superman", "Elmer Fudd", "Pink Panther"];
 
     renderButtons();
 
@@ -8,8 +8,13 @@ $(document).ready(function() {
     function renderButtons() {
         for (var i=0; i<cartoons.length; i++) {
             var btn = $("<button>").addClass("buttons").attr("data-name", cartoons[i]).text(cartoons[i]);
+            var delBtn = $("<button>").addClass("deleteButton").text("X");
+            
+    
+            
             if (btn.attr("data-name") != "") {
                 $("#btnContainer").append(btn);
+               btn.append(delBtn);
             }
         }
     }
@@ -28,7 +33,18 @@ $(document).ready(function() {
         $("#CCInput").val("");
     });
 
-    // function run when one of the Cartoon Character Buttons are clicked
+    // click delete character button    
+    $(".deleteButton").on("click", function(e) {
+        console.log("before: " + cartoons);
+        $(this).parent().fadeOut(500, function() {
+            $(this).remove;
+            cartoons.pop($(this));
+            console.log("after: " + cartoons);
+        });
+        e.stopPropagation();
+    });
+
+    // click Cartoon Character Button
     $(document).on("click", ".buttons", function() {
         var CChar = $(this).attr("data-name");
         console.log();
@@ -45,7 +61,7 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            $("#leftCol").empty();
+            $("#gifContainer").empty();
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
                 // console.log("Loop #1");
@@ -62,13 +78,13 @@ $(document).ready(function() {
                 charImage.attr("data-animate", results[i].images.fixed_height.url);
                 charDiv.append(p);
                 charDiv.append(charImage);
-                $("#leftCol").append(charDiv);
+                $("#gifContainer").append(charDiv);
                 // console.log("imgID = " + imgID);
             }
         });
     });
 
-    // function run when one of the cartoon character gifs are clicked
+    // click cartoon character gif
     $(document).on("click", ".gif", function() {
         var state = $(this).attr("data-state");
         var id = $(this).attr("id");
