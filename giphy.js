@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Red Riding Hood", "Snow White", "Sleeping Beauty", "Daisy Duck", "Popeye", "Olive Oyl", "Daffy Duck", "Winnie-the-Pooh", "Betty Boop", "Sylvester", "Yogi Bear", "Superman", "Elmer Fudd", "Pink Panther"];
+    var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Red Riding Hood", "Snow White", "Sleeping Beauty", "Daisy Duck", "Daffy Duck", "Winnie-the-Pooh", "Betty Boop", "Sylvester", "Yogi Bear", "Superman", "Elmer Fudd", "Pink Panther"];
 
     renderButtons();
 
