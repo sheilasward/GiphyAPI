@@ -1,20 +1,25 @@
 $(document).ready(function() {
 
-    var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Red Riding Hood", "Snow White", "Sleeping Beauty", "Daisy Duck", "Daffy Duck", "Winnie-the-Pooh", "Betty Boop", "Sylvester", "Yogi Bear", "Superman", "Elmer Fudd", "Pink Panther"];
+    var cartoons = ["Sponge Bob", "Patrick", "Mr. Krabs", "Mickey Mouse", "Donald Duck", "Porky Pig", "Snow White", "Sleeping Beauty", "Daisy Duck", "Daffy Duck", "Winnie-the-Pooh", "Sylvester", "Yogi Bear", "Pink Panther"];
 
     renderButtons();
 
     // Function to display buttons on page - at beginning, and also after another button is added
     function renderButtons() {
         for (var i=0; i<cartoons.length; i++) {
+            var btn = cartoons[i];
+            console.log("btn = " + btn);
+
+
+        /*
             var btn = $("<button>").addClass("buttons").attr("data-name", cartoons[i]).text(cartoons[i]);
-            var delBtn = $("<button>").addClass("deleteButton").text("X");
+            var delBtn = $("<button>").addClass("deleteButton");
             
-    
+        */
             
-            if (btn.attr("data-name") != "") {
-                $("#btnContainer").append(btn);
-               btn.append(delBtn);
+            if (btn != "" || " ") {
+                $("ul").append("<li class='buttons'><span><i class='far fa-trash-alt'></i></span> " + btn);
+        /*       btn.append(delBtn);   */
             }
         }
     }
@@ -34,7 +39,7 @@ $(document).ready(function() {
     });
 
     // click delete character button    
-    $(".deleteButton").on("click", function(e) {
+    $("ul").on("click", "span", function(e) {
         console.log("before: " + cartoons);
         $(this).parent().fadeOut(500, function() {
             $(this).remove;
@@ -45,10 +50,10 @@ $(document).ready(function() {
     });
 
     // click Cartoon Character Button
-    $(document).on("click", ".buttons", function() {
-        var CChar = $(this).attr("data-name");
+    $("ul").on("click", "li", function() {
+        var CChar = $(this).text();
         console.log();
-        console.log("You clicked on button: " + CChar);
+        console.log("You clicked on li: " + CChar);
         var APIKey = "r66mGJmgqWh5HquqoxbKJADBc0efxdKk"; 
         var queryURL = "https://api.giphy.com/v1/gifs/search" +
                      "?q=" + CChar + 

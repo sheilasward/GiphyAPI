@@ -1,32 +1,30 @@
-.buttons {
+
+
+li {
     margin: 5px;
     padding: 5px;
     background: #006466;
     color: white;
     font-weight: bold;
-    position: relative;
-    z-index: 1;
-    width: 150px;
-    height: 100px;
+    width: 210px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    
 }
 
 .deleteButton {
     position: absolute;
-    top: 2px;
-    right: 4px;
-    display: block;
-    color: white;
-    background-color: rgba(0,0,0,0);
+    top: 0px;
+    right: 0px;
+    background-image: url(images/DeleteButton.png);
+    background-repeat: no-repeat;
+    border: 1px solid #006466;
+    width: 30px;
+    height: 30px;
 }
-/*
-.deleteButton:hover {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    display: block;
-    color: white;
-}
-*/
+
 .jumbotron-color {
     background: #006466;
     text-align: center;
@@ -44,10 +42,6 @@
 
 .btnContain {
     margin: 5px 100px;
-    text-align: center;
-}
-
-#btnContainer {
     text-align: left;
 }
 
@@ -90,16 +84,20 @@ img {
     position: relative;
     float:left;
 }
-.content .top_right_corner {
-    position: absolute;
-    top:3px;
-    right:3px;
+
+span {
+    background:url(images/DeleteButton.png);
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 0;
+    text-align: center;
+    transition: 0.2s linear;
+    opacity: 0;
+    float: left;
 }
-.top_right_corner{
-  border:solid 1px blue;
-  cursor:pointer;
-}
-.content:hover .top_right_corner{
-  border:solid 1px red;
+
+li:hover span {
+    width: 40px;
+    opacity: 1;
 }
 
